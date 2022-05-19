@@ -6,6 +6,9 @@ function Home() {
         <div>We don't just make bathrooms, we make art</div>
         <button>Shop now</button>
       </div>
+      <div>
+        <img></img>
+      </div>
     </main>
   );
 }
