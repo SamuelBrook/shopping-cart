@@ -7,7 +7,9 @@ function Shop(props) {
           return (
             <div className="productsContainer-card">
               <div className="productsContainer-card-imageContainer">
-                <img className="productImage" alt={product.name}></img>
+                <img className="productImage" alt={product.name}>
+                  {product.image}
+                </img>
               </div>
               <div className="productsContainer-card-info">
                 <div className="productName">{product.name}</div>
