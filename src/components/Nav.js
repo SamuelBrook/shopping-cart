@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import basketIcon from "../assets/basket-icon.svg";
 
 function Nav() {
   return (
@@ -11,7 +12,9 @@ function Nav() {
           <Link to="/">Home</Link>
         </div>
         <div className="navBar-shop">Shop</div>
-        <div className="navBar-shoppingCart"></div>
+        <button className="navBar-shoppingCart">
+          <img alt="shopping basket icon">{basketIcon}</img>
+        </button>
       </nav>
     </header>
   );
