@@ -5,7 +5,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import teepeeImage from "./assets/images/teepee.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Checkout from "./components/Checkout";
 
 function App() {
   const productsArray = [
@@ -19,6 +20,19 @@ function App() {
 
   const [products, setProducts] = useState(productsArray);
 
+  const [showBasket, setShowBasket] = useState(false);
+
+  useEffect(() => {
+    const checkout = document.querySelector(".navBar-shoppingCart");
+    checkout.addEventListener("click", () => {
+      if (!showBasket) {
+        setShowBasket(true);
+      } else if (showBasket) {
+        setShowBasket(false);
+      }
+    });
+  });
+
   return (
     <>
       <Nav />
@@ -30,6 +44,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
+      {showBasket && <Checkout />}
     </>
   );
 }
