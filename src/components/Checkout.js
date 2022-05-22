@@ -25,6 +25,8 @@ function Checkout(props) {
         })}
       </div>
       <div className="checkoutContainer-totalPrice">Total: {basket.total}</div>
+      <button className="checkoutContainer-checkoutButton">Checkout</button>
+      <button className="checkoutContainer-closeCheckout">Close</button>
     </div>
   );
 }

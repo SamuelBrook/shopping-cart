@@ -15,20 +15,76 @@ function App() {
       description: "Fits 1-2 adults at a time",
       id: "teepee",
       image: teepeeImage,
+      price: 24.95,
     },
   ];
 
+  const basket = {
+    itemNumber: 0,
+    basketItems: [],
+    totalPrice: 0,
+    open: false,
+
+    SumBasket() {
+      let totalPriceNew = 0;
+      for (let i = 0; i < this.basketItems.length; i++) {
+        totalPriceNew += this.basketItems.price;
+      }
+      this.totalPrice = totalPriceNew;
+    },
+  };
+
   const [products, setProducts] = useState(productsArray);
 
-  const [showBasket, setShowBasket] = useState(false);
+  const [shoppingCart, setShoppingCart] = useState(basket);
 
   useEffect(() => {
+    // allow to open and close basket according to whether basket is open or closed
     const checkout = document.querySelector(".navBar-shoppingCart");
     checkout.addEventListener("click", () => {
-      if (!showBasket) {
-        setShowBasket(true);
-      } else if (showBasket) {
-        setShowBasket(false);
+      if (!basket.open) {
+        setShoppingCart((prevState) => {
+          let newBasket = { ...prevState.basket };
+          newBasket.open = true;
+          return newBasket;
+        });
+      } else if (basket.open) {
+        setShoppingCart((prevState) => {
+          let newBasket = { ...prevState.basket };
+          newBasket.open = false;
+          return newBasket;
+        });
+      }
+    });
+
+    const checkoutClose = document.querySelector(
+      ".checkoutContainer-closeCheckout"
+    );
+    checkoutClose.addEventListener("click", () => {
+      setShoppingCart((prevState) => {
+        let newBasket = { ...prevState.basket };
+        newBasket.open = false;
+        return newBasket;
+      });
+    });
+  });
+
+  useEffect(() => {
+    // add items to cart and sum up the price
+    const addItemsButton = document.querySelectorAll(
+      ".productsContainer-card-info-addToBasket"
+    );
+    addItemsButton.addEventListener("click", (event) => {
+      let target = event.target;
+      for (let i = 0; i < productsArray.length; i++) {
+        if (productsArray[i].id === target.id) {
+          setShoppingCart((prevState) => {
+            let newBasket = { ...prevState.basket };
+            newBasket.basketItems.push(productsArray[i]);
+            newBasket.SumBasket();
+            return newBasket;
+          });
+        }
       }
     });
   });
@@ -44,7 +100,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
-      {showBasket && <Checkout />}
+      {basket.open && <Checkout />}
     </>
   );
 }

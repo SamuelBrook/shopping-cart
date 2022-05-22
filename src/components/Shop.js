@@ -14,7 +14,12 @@ function Shop(props) {
               <div className="productsContainer-card-info">
                 <div className="productName">{product.name}</div>
                 <div className="productPrice">{product.price}</div>
-                <button>Add to basket</button>
+                <button
+                  className="productsContainer-card-info-addToBasket"
+                  id={product.id}
+                >
+                  Add to basket
+                </button>
               </div>
             </div>
           );
