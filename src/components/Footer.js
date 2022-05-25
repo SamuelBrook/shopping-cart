@@ -4,9 +4,9 @@ function Footer() {
   return (
     <footer>
       <small>Copyright &copy; 2022 Samuel Brook. All Rights Reserved</small>
-      <img alt="github logo">
-        <a href="https://github.com/SamuelBrook/">{gitHubIconSmall}</a>
-      </img>
+      <a href="https://github.com/SamuelBrook/">
+        <img alt="github logo" src={gitHubIconSmall}></img>
+      </a>
     </footer>
   );
 }

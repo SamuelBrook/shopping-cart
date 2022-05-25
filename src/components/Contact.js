@@ -9,24 +9,30 @@ function Contact() {
   return (
     <main>
       <div className="contactIconsContainer">
-        <img alt="github icon">
-          <a href="https://github.com/SamuelBrook/">{gitHubIconLarge}</a>
-        </img>
-        <img alt="instagram icon">
-          <a href="#">{instagramIcon}</a>
-        </img>
-        <img alt="facebook icon">
-          <a href="#">{facebookIcon}</a>
-        </img>
-        <img alt="twitter icon">
-          <a href="#">{twitterIcon}</a>
-        </img>
-        <img alt="linkedin icon">
-          <a href="#">{linkedinIcon}</a>
-        </img>
-        <img alt="email icon">
-          <a href="#">{emailIcon}</a>
-        </img>
+        <a href="https://github.com/SamuelBrook/">
+          <img alt="github icon" src={gitHubIconLarge}></img>
+        </a>
+
+        <a href="#">
+          <img alt="instagram icon" src={instagramIcon}></img>
+        </a>
+
+        <a href="#">
+          <img alt="facebook icon" src={facebookIcon}></img>
+        </a>
+
+        <a href="#">
+          <img alt="twitter icon" src={twitterIcon}></img>
+        </a>
+
+        <a href="#">
+          <img alt="linkedin icon" src={linkedinIcon}></img>
+        </a>
+
+        <a href="#">
+          {" "}
+          <img alt="email icon" src={emailIcon}></img>
+        </a>
       </div>
       <div className="contactInfo">
         <div className="contactInfo-name">MockShop</div>

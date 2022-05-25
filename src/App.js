@@ -17,6 +17,13 @@ function App() {
       image: teepeeImage,
       price: 24.95,
     },
+    {
+      name: "Filler",
+      description: "Filler",
+      id: "Filler",
+      image: "Filler",
+      price: 0,
+    },
   ];
 
   const basket = {
@@ -56,47 +63,50 @@ function App() {
         });
       }
     });
-
-    const checkoutClose = document.querySelector(
-      ".checkoutContainer-closeCheckout"
-    );
-    checkoutClose.addEventListener("click", () => {
-      setShoppingCart((prevState) => {
-        let newBasket = { ...prevState.basket };
-        newBasket.open = false;
-        return newBasket;
+    if (basket.open) {
+      const checkoutClose = document.querySelector(
+        ".checkoutContainer-closeCheckout"
+      );
+      checkoutClose.addEventListener("click", () => {
+        setShoppingCart((prevState) => {
+          let newBasket = { ...prevState.basket };
+          newBasket.open = false;
+          return newBasket;
+        });
       });
-    });
-  });
+    }
+  }, [basket.open]);
 
   useEffect(() => {
-    // add items to cart and sum up the price
-    const addItemsButton = document.querySelectorAll(
+    // allow to add items to cart and sum up the price
+    const addItemsButtons = document.querySelectorAll(
       ".productsContainer-card-info-addToBasket"
     );
-    addItemsButton.addEventListener("click", (event) => {
-      let target = event.target;
-      for (let i = 0; i < productsArray.length; i++) {
-        if (productsArray[i].id === target.id) {
-          setShoppingCart((prevState) => {
-            let newBasket = { ...prevState.basket };
-            newBasket.basketItems.push(productsArray[i]);
-            newBasket.SumBasket();
-            return newBasket;
-          });
+    addItemsButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        let target = event.target;
+        for (let i = 0; i < productsArray.length; i++) {
+          if (productsArray[i].id === target.id) {
+            setShoppingCart((prevState) => {
+              let newBasket = { ...prevState.basket };
+              newBasket.basketItems.push(productsArray[i]);
+              newBasket.SumBasket();
+              return newBasket;
+            });
+          }
         }
-      }
+      });
     });
   });
 
   return (
     <>
-      <Nav />
       <BrowserRouter>
+        <Nav />
         <Routes>
-          <Route path="/" element={Home}></Route>
-          <Route path="/shop" element={Shop}></Route>
-          <Route path="/contact" element={Contact}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/shop" element={<Shop />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
         </Routes>
       </BrowserRouter>
       <Footer />

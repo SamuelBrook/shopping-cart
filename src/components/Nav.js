@@ -13,7 +13,7 @@ function Nav() {
         </div>
         <div className="navBar-shop">Shop</div>
         <button className="navBar-shoppingCart">
-          <img alt="shopping basket icon">{basketIcon}</img>
+          <img alt="shopping basket icon" src={basketIcon}></img>
         </button>
       </nav>
     </header>

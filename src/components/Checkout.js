@@ -9,7 +9,7 @@ function Checkout(props) {
           return (
             <div className="itemCard">
               <div className="itemCard-imageContainer">
-                <img alt={basketItem.name}>{basketItem.image}</img>
+                <img alt={basketItem.name} src={basketItem.image}></img>
               </div>
               <div className="itemCard-info">
                 <div className="itemCard-info-name">{basketItem.name}</div>
