@@ -1,6 +1,6 @@
 function Checkout(props) {
   const { basket } = props;
-  const { basketArray } = props;
+  const basketArray = basket.basketItems;
 
   return (
     <div className="checkoutContainer">

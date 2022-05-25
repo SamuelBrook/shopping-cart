@@ -30,7 +30,6 @@ function App() {
     itemNumber: 0,
     basketItems: [],
     totalPrice: 0,
-    open: false,
 
     SumBasket() {
       let totalPriceNew = 0;
@@ -45,41 +44,19 @@ function App() {
 
   const [shoppingCart, setShoppingCart] = useState(basket);
 
-  useEffect(() => {
-    // allow to open and close basket according to whether basket is open or closed
-    const checkout = document.querySelector(".navBar-shoppingCart");
-    checkout.addEventListener("click", () => {
-      console.log("hello");
-      if (!basket.open) {
-        setShoppingCart((prevState) => {
-          let newBasket = { ...prevState.basket };
-          newBasket.open = true;
-          return newBasket;
-        });
-      } else if (basket.open) {
-        setShoppingCart((prevState) => {
-          let newBasket = { ...prevState.basket };
-          newBasket.open = false;
-          return newBasket;
-        });
-      }
-    });
-  }, []);
+  const [basketOpen, setBasketOpen] = useState(false);
 
   useEffect(() => {
-    if (basket.open) {
-      const checkoutClose = document.querySelector(
-        ".checkoutContainer-closeCheckout"
-      );
-      checkoutClose.addEventListener("click", () => {
-        setShoppingCart((prevState) => {
-          let newBasket = { ...prevState.basket };
-          newBasket.open = false;
-          return newBasket;
-        });
-      });
+    // allow to open and close basket according to whether basket is open or closed
+    function ToggleBasketOpen() {
+      !basketOpen ? setBasketOpen(true) : setBasketOpen(false);
     }
-  }, [basket]);
+    const checkoutButton = document.querySelector(".navBar-shoppingCart");
+    checkoutButton.addEventListener("click", ToggleBasketOpen);
+    return () => {
+      checkoutButton.removeEventListener("click", ToggleBasketOpen);
+    };
+  });
 
   useEffect(() => {
     // allow to add items to cart and sum up the price
@@ -114,7 +91,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
-      {basket.open && <Checkout />}
+      {basketOpen && <Checkout basket={basket} />}
     </>
   );
 }
