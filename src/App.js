@@ -49,6 +49,7 @@ function App() {
     // allow to open and close basket according to whether basket is open or closed
     const checkout = document.querySelector(".navBar-shoppingCart");
     checkout.addEventListener("click", () => {
+      console.log("hello");
       if (!basket.open) {
         setShoppingCart((prevState) => {
           let newBasket = { ...prevState.basket };
@@ -63,6 +64,9 @@ function App() {
         });
       }
     });
+  }, []);
+
+  useEffect(() => {
     if (basket.open) {
       const checkoutClose = document.querySelector(
         ".checkoutContainer-closeCheckout"
@@ -75,7 +79,7 @@ function App() {
         });
       });
     }
-  }, [basket.open]);
+  }, [basket]);
 
   useEffect(() => {
     // allow to add items to cart and sum up the price

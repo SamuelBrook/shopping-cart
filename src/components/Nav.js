@@ -11,7 +11,12 @@ function Nav() {
         <div className="navBar-home">
           <Link to="/">Home</Link>
         </div>
-        <div className="navBar-shop">Shop</div>
+        <div className="navBar-shop">
+          <Link to="/shop">Shop</Link>
+        </div>
+        <div className="navBar-contact">
+          <Link to="/contact">Contact</Link>
+        </div>
         <button className="navBar-shoppingCart">
           <img alt="shopping basket icon" src={basketIcon}></img>
         </button>
