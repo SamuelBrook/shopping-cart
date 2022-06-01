@@ -16,6 +16,7 @@ function App() {
       id: "teepee",
       image: teepeeImage,
       price: 24.95,
+      number: 1,
     },
     {
       name: "Filler",
@@ -23,28 +24,26 @@ function App() {
       id: "Filler",
       image: "Filler",
       price: 0,
+      number: 1,
     },
   ];
 
-  const basket = {
-    itemNumber: 0,
-    basketItems: [],
-    totalPrice: 0,
+  const [totalPrice, setTotalPrice] = useState(0);
 
-    SumBasket() {
-      let totalPriceNew = 0;
-      for (let i = 0; i < this.basketItems.length; i++) {
-        totalPriceNew += this.basketItems.price;
-      }
-      this.totalPrice = totalPriceNew;
-    },
-  };
-
-  const [products, setProducts] = useState(productsArray);
-
-  const [shoppingCart, setShoppingCart] = useState(basket);
+  const [shoppingCart, setShoppingCart] = useState([]);
 
   const [basketOpen, setBasketOpen] = useState(false);
+
+  // sum up price of items
+  useEffect(() => {
+    if (shoppingCart.length > 0) {
+      let total = 0;
+      for (let i = 0; i < shoppingCart.length; i++) {
+        total = shoppingCart[i].number * shoppingCart[i].price;
+      }
+      setTotalPrice(total);
+    }
+  }, [shoppingCart]);
 
   useEffect(() => {
     // allow to open and close basket according to whether basket is open or closed
@@ -59,26 +58,81 @@ function App() {
   });
 
   useEffect(() => {
-    // allow to add items to cart and sum up the price
-    const addItemsButtons = document.querySelectorAll(
-      ".productsContainer-card-info-addToBasket"
-    );
-    addItemsButtons.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        let target = event.target;
-        for (let i = 0; i < productsArray.length; i++) {
-          if (productsArray[i].id === target.id) {
-            setShoppingCart((prevState) => {
-              let newBasket = { ...prevState.basket };
-              newBasket.basketItems.push(productsArray[i]);
-              newBasket.SumBasket();
-              return newBasket;
-            });
-          }
+    function CloseBasket() {
+      setBasketOpen(false);
+    }
+    if (basketOpen) {
+      const checkoutClose = document.querySelector(
+        ".checkoutContainer-closeCheckout"
+      );
+
+      checkoutClose.addEventListener("click", CloseBasket);
+      return () => {
+        checkoutClose.removeEventListener("click", CloseBasket);
+      };
+    }
+  }, [basketOpen]);
+
+  // allow to add items to cart
+  const AddItemsToCart = (event) => {
+    let target = event.target;
+
+    function AddItem() {
+      for (let i = 0; i < productsArray.length; i++) {
+        if (target.id === productsArray[i].id) {
+          let clickedItem = productsArray[i];
+          setShoppingCart((prevstate) => [...prevstate, clickedItem]);
         }
+      }
+    }
+
+    if (shoppingCart.length < 1) {
+      AddItem();
+    } else {
+      let existsInCart = false;
+      for (let i = 0; i < shoppingCart.length; i++) {
+        if (target.id === shoppingCart[i].id) {
+          existsInCart = true;
+        }
+      }
+      if (existsInCart) {
+        setShoppingCart((prevstate) => {
+          let newArray = [...prevstate];
+          let newState = newArray.map((obj) => {
+            if (obj.id === target.id) {
+              let newNumVal = obj.number + 1;
+              return { ...obj, number: newNumVal };
+            }
+            return obj;
+          });
+
+          return newState;
+        });
+      } else {
+        AddItem();
+      }
+    }
+  };
+
+  const ToggleItemNumber = (event) => {
+    const target = event.target;
+    if (target.className === "addItem") {
+      AddItemsToCart(event);
+    } else {
+      setShoppingCart((prevstate) => {
+        let newArray = [...prevstate];
+        let newState = newArray.map((obj) => {
+          if (obj.id === target.id) {
+            let newNumVal = obj.number - 1;
+            return { ...obj, number: newNumVal };
+          }
+          return obj;
+        });
+
+        return newState;
       });
-    });
-  });
+    }
+  };
 
   return (
     <>
@@ -86,12 +140,23 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/shop" element={<Shop />}></Route>
+          <Route
+            path="/shop"
+            element={
+              <Shop products={productsArray} addToBasket={AddItemsToCart} />
+            }
+          ></Route>
           <Route path="/contact" element={<Contact />}></Route>
         </Routes>
+        <Footer />
+        {basketOpen && (
+          <Checkout
+            shoppingBasket={shoppingCart}
+            toggleNumber={ToggleItemNumber}
+            basketTotal={totalPrice}
+          />
+        )}
       </BrowserRouter>
-      <Footer />
-      {basketOpen && <Checkout basket={basket} />}
     </>
   );
 }

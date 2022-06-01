@@ -1,11 +1,11 @@
 function Shop(props) {
-  const { productsArray } = props;
+  const { products, addToBasket } = props;
   return (
     <main>
       <div className="productsContainer">
-        {productsArray.map((product) => {
+        {products.map((product) => {
           return (
-            <div className="productsContainer-card">
+            <div className="productsContainer-card" key={product.id}>
               <div className="productsContainer-card-imageContainer">
                 <img
                   className="productImage"
@@ -17,8 +17,9 @@ function Shop(props) {
                 <div className="productName">{product.name}</div>
                 <div className="productPrice">{product.price}</div>
                 <button
-                  className="productsContainer-card-info-addToBasket"
+                  className="productsContainer-card-addToBasket"
                   id={product.id}
+                  onClick={addToBasket}
                 >
                   Add to basket
                 </button>
