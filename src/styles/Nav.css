@@ -1,0 +1,10 @@
+header {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+}

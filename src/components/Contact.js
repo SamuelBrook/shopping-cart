@@ -4,6 +4,7 @@ import facebookIcon from "../assets/facebook-icon.svg";
 import twitterIcon from "../assets/twitter-icon.svg";
 import linkedinIcon from "../assets/linkedin-icon.svg";
 import emailIcon from "../assets/email-icon.svg";
+import "../styles/Contact.css";
 
 function Contact() {
   return (

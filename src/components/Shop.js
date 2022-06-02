@@ -1,3 +1,5 @@
+import "../styles/Shop.css";
+
 function Shop(props) {
   const { products, addToBasket } = props;
   return (
