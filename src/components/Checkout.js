@@ -25,7 +25,7 @@ function Checkout(props) {
                   >
                     +
                   </button>
-                  <div>{basketItem.number}</div>
+                  <div className="itemNumber">{basketItem.number}</div>
                   <button
                     className="subtractItem"
                     id={basketItem.id}

@@ -34,7 +34,7 @@ function App() {
 
   const [basketOpen, setBasketOpen] = useState(false);
 
-  // sum up price of items
+  // sum up total price of items
   useEffect(() => {
     if (shoppingCart.length > 0) {
       let total = 0;
@@ -45,8 +45,8 @@ function App() {
     }
   }, [shoppingCart]);
 
+  // allow to open and close basket according to whether basket is open or closed
   useEffect(() => {
-    // allow to open and close basket according to whether basket is open or closed
     function ToggleBasketOpen() {
       !basketOpen ? setBasketOpen(true) : setBasketOpen(false);
     }
@@ -57,6 +57,7 @@ function App() {
     };
   });
 
+  //close basket when hit basket close button
   useEffect(() => {
     function CloseBasket() {
       setBasketOpen(false);
@@ -73,7 +74,6 @@ function App() {
     }
   }, [basketOpen]);
 
-  // allow to add items to cart
   const AddItemsToCart = (event) => {
     let target = event.target;
 
@@ -116,9 +116,20 @@ function App() {
 
   const ToggleItemNumber = (event) => {
     const target = event.target;
+    const number = document.querySelector(".itemNumber");
     if (target.className === "addItem") {
       AddItemsToCart(event);
     } else {
+      if (number.textContent < 2) {
+        //remove item from shopping cart
+        setShoppingCart((prevState) => {
+          let newArray = [...prevState];
+          let updatedArray = newArray.filter((obj) => {
+            return obj.id !== target.id;
+          });
+          return updatedArray;
+        });
+      }
       setShoppingCart((prevstate) => {
         let newArray = [...prevstate];
         let newState = newArray.map((obj) => {
