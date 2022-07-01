@@ -1,10 +1,42 @@
 header {
-  height: 10vh;
+  height: 12vh;
   display: flex;
   flex-direction: row;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  gap: 26vw;
+}
+
+header a {
+  text-decoration: none;
+  color: rgb(0, 255, 213);
 }
 
 nav {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10vh;
+  font-size: 2.5vh;
+}
+
+.navBar-header {
+  font-size: 4vh;
+}
+
+.navBar-shoppingCart {
+  height: 6vh;
+  width: 6vh;
+  border-radius: 100%;
+  border-style: none;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  height: 50%;
 }
