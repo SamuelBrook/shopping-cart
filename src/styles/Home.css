@@ -1,7 +1,30 @@
 main {
-  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 5vw;
+}
+
+.container-textContainer-headline {
+  text-transform: uppercase;
+}
+
+.container-imageContainer-image {
+  height: 50vh;
 }
 
 .shop-link {
+  background-color: black;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.shop-link a {
+  text-decoration: none;
   color: white;
 }
