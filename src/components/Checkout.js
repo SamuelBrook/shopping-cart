@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../styles/Checkout.css"
 
 function Checkout(props) {
   const { shoppingBasket, toggleNumber, basketTotal } = props;
@@ -10,7 +11,7 @@ function Checkout(props) {
           return (
             <div className="itemCard" key={basketItem.id}>
               <div className="itemCard-imageContainer">
-                <img alt={basketItem.name} src={basketItem.image}></img>
+                <img className="basketImage" alt={basketItem.name} src={basketItem.image}></img>
               </div>
               <div className="itemCard-info">
                 <div className="itemCard-info-name">{basketItem.name}</div>

@@ -1,3 +1,7 @@
 main {
   flex: auto;
 }
+
+.productImage {
+  height: 10vh;
+}
