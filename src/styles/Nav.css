@@ -1,5 +1,14 @@
+@font-face {
+  font-family: poppinsRegular;
+  src: url("../assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url("../assets/fonts/Poppins-SemiBold.ttf");
+}
+
 header {
-  height: 12vh;
+  height: 13vh;
   display: flex;
   flex-direction: row;
   background-color: black;
@@ -10,7 +19,6 @@ header {
 
 header a {
   text-decoration: none;
-  color: rgb(0, 255, 213);
 }
 
 nav {
@@ -22,8 +30,25 @@ nav {
   font-size: 2.5vh;
 }
 
+nav a {
+  color: white
+}
+
+.navBar {
+  font-family: poppinsRegular;
+  text-decoration: none;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
 .navBar-header {
-  font-size: 4vh;
+  font-size: 5vh;
+  font-family: poppinsSemiBold;  
+  letter-spacing: -1px;
+}
+
+.navBar-header a {
+  color: aquamarine;
 }
 
 .navBar-shoppingCart {
