@@ -1,3 +1,27 @@
 footer {
-  height: 10vh;
+  height: 4vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+
 }
+
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5vw;
+  height: 80%;
+  align-items: center;
+}
+
+
+
+.footerContainer-githubIcon {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

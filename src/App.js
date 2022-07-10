@@ -147,9 +147,9 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter className="router">
         <Nav />
-        <Routes>
+        <Routes className="mainRoute">
           <Route path="/" element={<Home />}></Route>
           <Route
             path="/shop"
