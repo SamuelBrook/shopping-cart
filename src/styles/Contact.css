@@ -1,3 +1,21 @@
 main {
   flex: auto;
 }
+
+.contactInfoContainer {
+  display: flex;
+  flex-direction: column;
+  height: 3vh;
+}
+
+.contactIconsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5vh;
+}
+
+.contactIcon {
+  height: 15vh;
+}
+
+

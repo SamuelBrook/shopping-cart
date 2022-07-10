@@ -1,4 +1,4 @@
-import gitHubIconSmall from "../assets/GitHub-Mark-32px.png";
+import gitHubIconSmall from "../assets/icons/GitHub-Mark-32px.png";
 import "../styles/Footer.css";
 
 function Footer() {

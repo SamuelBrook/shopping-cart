@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import basketIcon from "../assets/basket-icon.svg";
+import basketIcon from "../assets/icons/basket-icon.svg";
 import "../styles/Nav.css";
 
 function Nav() {
