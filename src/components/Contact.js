@@ -8,7 +8,7 @@ import "../styles/Contact.css";
 
 function Contact() {
   return (
-    <main>
+    <main className="mainContact">
       <div className="contactInfoContainer">
         <div className="contactIconsContainer">
           <a href="https://github.com/SamuelBrook/">

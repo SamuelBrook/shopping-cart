@@ -3,7 +3,7 @@
   src: url("../assets/fonts/Poppins-SemiBold.ttf");
 }
 
-main {
+.mainHome {
   display: flex;
   justify-content: center;
   align-items: center;

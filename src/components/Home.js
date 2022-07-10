@@ -4,7 +4,7 @@ import wigwams from "../assets/images/wigwams.jpg";
 
 function Home() {
   return (
-    <main>
+    <main className="mainHome">
       <div className="container">
         <div className="container-textContainer">
           <div className="container-textContainer-headline">
