@@ -1,3 +1,8 @@
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url("../assets/fonts/Poppins-SemiBold.ttf");
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -8,20 +13,42 @@ main {
   display: flex;
   flex-direction: row;
   gap: 5vw;
+  width: 70vw;
+}
+
+.container-textContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .container-textContainer-headline {
   text-transform: uppercase;
+  color: white;
+  letter-spacing: 3px;
+}
+
+.container-textContainer-statement {
+  font-style: bold;
+  font-size: 6vh;
+  font-family: poppinsSemiBold;
 }
 
 .container-imageContainer-image {
-  height: 50vh;
+  height: 45vh;
+  border-radius: 32px;
+  display: block;
 }
 
 .shop-link {
   background-color: black;
   border-style: none;
-  border-radius: 5px;
+  border-radius: 50px;
+  margin-top: auto;
+  font-size: 3vh;
+  font-style: bold;
+  font-family: poppinsSemiBold;
+  padding: 20px;
+  width: 15vw;
 }
 
 .shop-link a {
